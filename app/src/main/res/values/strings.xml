@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SpaceXTest</string>
+    <string name="landing_asds">Autonomous spaceport drone ship</string>
+    <string name="landing_rtls">todo</string>
+    <string name="landing_ocean">Ocean</string>
+    <string name="landing_none">Did not land</string>
+
+    <string name="title_flights_upcoming">Upcoming Flights</string>
+    <string name="title_flights_past">Past Flights</string>
+
+    <string name="flight_format_full">Flight #%1$s • %2$s</string>
+    <string name="flight_format_no_date">Flight #%s</string>
+    <string name="flight_format_compact">#%1$s • %2$s</string>
+
+    <string name="date_format_starts">Starts %s</string>
+
+    <string name="action_remind">Remind Me</string>
+</resources>
