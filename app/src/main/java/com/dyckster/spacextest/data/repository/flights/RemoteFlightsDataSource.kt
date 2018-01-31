@@ -6,13 +6,6 @@ import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 
 object RemoteFlightsDataSource : FlightsDataSource {
-    override fun getFlight(): Single<Flight> {
-        TODO("not implemented")
-    }
-
-    override fun getLatestFlight() {
-        TODO("not implemented")
-    }
 
     override fun getFlights(): Single<List<Flight>> {
         val api = SpaceXApiService.instance

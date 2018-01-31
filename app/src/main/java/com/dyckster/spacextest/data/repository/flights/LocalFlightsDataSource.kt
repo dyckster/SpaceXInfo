@@ -12,30 +12,20 @@ import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 
 object LocalFlightsDataSource : FlightsDataSource {
-    override fun getFlight(): Single<Flight> {
-        TODO("not implemented")
-    }
-
-    override fun getLatestFlight() {
-        TODO("not implemented")
-    }
 
     override fun getFlights(): Single<List<Flight>> {
         val flightsDao = SpaceXApplication.database.flightsDao()
         val flightsDb = flightsDao.getFlights()
         val rocketsDb = flightsDao.getRocketsWithStages()
-        return Single.zip(flightsDb, rocketsDb, BiFunction { fl, rs ->
-            val flights: MutableList<Flight> = ArrayList()
-            fl.forEach {
+        return Single.zip(flightsDb, rocketsDb, BiFunction { flights, rockets ->
+            return@BiFunction flights.map {
                 val flightNumber: Int = it.flightNumber
-                val rocketDbWithStages = rs.findLast { flightNumber == it.rocketDb!!.flightNumber }!!
-                flights.add(Flight(it,
+                val rocketDbWithStages = rockets.find { flightNumber == it.rocketDb!!.flightNumber }!!
+                return@map Flight(it,
                         rocketDbWithStages.rocketDb!!,
                         rocketDbWithStages.cores.map { Core(it) },
-                        rocketDbWithStages.payloads.map { Payload(it) }))
+                        rocketDbWithStages.payloads.map { Payload(it) })
             }
-            if (flights.isEmpty()) throw Exception()
-            return@BiFunction flights
         })
     }
 
