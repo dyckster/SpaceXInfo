@@ -25,7 +25,7 @@ object LocalFlightsDataSource : FlightsDataSource {
                         rocketDbWithStages.rocketDb!!,
                         rocketDbWithStages.cores.map { Core(it) },
                         rocketDbWithStages.payloads.map { Payload(it) })
-            }
+            }.takeUnless { it.isEmpty() } ?: throw Exception()
         })
     }
 

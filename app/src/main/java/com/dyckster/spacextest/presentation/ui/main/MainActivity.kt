@@ -2,6 +2,10 @@ package com.dyckster.spacextest.presentation.ui.main
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -31,6 +35,22 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         launchesRecyclerView.adapter = adapter
 
         launchesSwipeRefresh.setOnRefreshListener { presenter.fetchFlights(true) }
+        launchesFilterButton.setOnClickListener { Toast.makeText(this, "Not working yet", Toast.LENGTH_LONG).show() }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        MenuInflater(this).inflate(R.menu.main_toolbar, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item!!.itemId) {
+            R.id.main_settings -> {
+                Toast.makeText(this, "Not working yet", Toast.LENGTH_LONG).show()
+                true
+            }
+            else -> false
+        }
     }
 
     override fun showProgressView(show: Boolean) {
