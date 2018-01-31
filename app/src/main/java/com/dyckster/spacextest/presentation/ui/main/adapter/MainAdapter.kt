@@ -48,6 +48,7 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     items.add(Item(ViewType.FLIGHT_PAST, it))
                     items.add(Item(ViewType.DIVIDER))
                 }
+                .apply { items.add(Item(ViewType.EMPTY, 88)) }
 
         notifyDataSetChanged()
     }

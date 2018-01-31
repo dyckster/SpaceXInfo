@@ -16,6 +16,15 @@ interface SpaceXApiService {
     @GET("launches/upcoming")
     fun getUpcomingFlights(): Single<List<Flight>>
 
+    @GET("rockets")
+    fun getRockets()
+
+    @GET("info")
+    fun getCompanyData()
+
+    @GET("launchpads")
+    fun getLaunchpads()
+
     companion object {
 
         val instance by lazy { this.create() }
