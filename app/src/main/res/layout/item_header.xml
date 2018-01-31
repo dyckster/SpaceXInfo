@@ -16,6 +16,6 @@
         android:paddingRight="32dp"
         android:paddingTop="8dp"
         android:textColor="@color/colorTextPrimary"
-        android:textSize="20sp"
+        android:textSize="24sp"
         tools:text="Upcoming Flights" />
 </LinearLayout>

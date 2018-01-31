@@ -32,17 +32,19 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun buildAdapter(flights: List<Flight>) {
         items.clear()
-        flights.asReversed()
+        flights
+                .asReversed()
                 .filter { it.launchDate > System.currentTimeMillis() / 1000L }
-                .apply { if (isNotEmpty()) items.add(addHeader(R.string.title_flights_upcoming)) }
+                .apply { if (isNotEmpty()) addHeader(R.string.title_flights_upcoming) }
                 .forEachIndexed { index, flight ->
                     if (index == 0) items.add(Item(ViewType.FLIGHT_UPCOMING, flight))
                     else items.add(Item(ViewType.FLIGHT_UPCOMING_COMPACT, flight))
                 }
                 .apply { items.add(Item(ViewType.EMPTY, 8)) }
-        flights.asReversed()
+                .let { flights }
+                .asReversed()
                 .filter { it.launchDate <= System.currentTimeMillis() / 1000L }
-                .apply { items.add(addHeader(R.string.title_flights_past)) }
+                .apply { addHeader(R.string.title_flights_past) }
                 .forEach {
                     items.add(Item(ViewType.FLIGHT_PAST, it))
                     items.add(Item(ViewType.DIVIDER))
@@ -60,7 +62,11 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    private fun addHeader(@StringRes title: Int): Item = Item(ViewType.HEADER, title)
+    private fun addHeader(@StringRes title: Int) {
+        items.add(Item(ViewType.EMPTY, 8))
+        items.add(Item(ViewType.HEADER, title))
+        items.add(Item(ViewType.EMPTY, 8))
+    }
 
     private data class Item(val viewType: ViewType, val type: Any? = null)
 

@@ -5,20 +5,18 @@
     android:layout_height="match_parent"
     tools:context="com.dyckster.spacextest.presentation.ui.main.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/launchesRecyclerView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/launchesSwipeRefresh"
         android:layout_width="match_parent"
-        android:background="@color/colorWhite"
-        android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false" />
+        android:layout_height="match_parent">
 
-    <android.support.v4.widget.ContentLoadingProgressBar
-        android:id="@+id/launchesProgressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@color/colorWhite" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/launchesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>
