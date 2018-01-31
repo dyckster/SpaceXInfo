@@ -33,7 +33,6 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun buildAdapter(flights: List<Flight>) {
         items.clear()
         flights
-                .asReversed()
                 .filter { it.launchDate > System.currentTimeMillis() / 1000L }
                 .apply { if (isNotEmpty()) addHeader(R.string.title_flights_upcoming) }
                 .forEachIndexed { index, flight ->
