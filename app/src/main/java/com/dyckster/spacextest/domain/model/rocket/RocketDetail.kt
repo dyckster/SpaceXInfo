@@ -1,4 +1,4 @@
-package com.dyckster.spacextest.model.rocket
+package com.dyckster.spacextest.domain.model.rocket
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Embedded

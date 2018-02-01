@@ -1,4 +1,4 @@
-package com.dyckster.spacextest.model.flight
+package com.dyckster.spacextest.domain.model.flight
 
 import android.support.annotation.StringRes
 import com.dyckster.spacextest.R

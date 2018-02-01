@@ -1,4 +1,4 @@
-package com.dyckster.spacextest.model.flight
+package com.dyckster.spacextest.domain.model.flight
 
 data class FlightLinks(
         val missionPatch: String?,

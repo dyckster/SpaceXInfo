@@ -4,9 +4,9 @@ import android.support.annotation.StringRes
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.dyckster.spacextest.R
-import com.dyckster.spacextest.model.flight.Flight
+import com.dyckster.spacextest.domain.model.flight.Flight
 import com.dyckster.spacextest.presentation.ui.global.viewholders.EmptyViewHolder
-import com.dyckster.spacextest.presentation.ui.utils.GraphicUnit
+import com.dyckster.spacextest.presentation.utils.GraphicUnit
 
 class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

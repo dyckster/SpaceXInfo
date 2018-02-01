@@ -2,25 +2,25 @@ package com.dyckster.spacextest.presentation.mvp.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.dyckster.spacextest.data.entity.flight.FlightEntity
-import com.dyckster.spacextest.data.mapper.FlightMapper
-import com.dyckster.spacextest.data.repository.flights.FlightsRepository
+import com.dyckster.spacextest.domain.interactors.FlightListInteractor
+import com.dyckster.spacextest.domain.model.flight.Flight
 import com.dyckster.spacextest.presentation.mvp.view.MainView
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 @InjectViewState
-class MainPresenter(private val repository: FlightsRepository) : MvpPresenter<MainView>() {
+class MainPresenter(private val interactor: FlightListInteractor) : MvpPresenter<MainView>() {
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         fetchFlights()
     }
 
     fun fetchFlights(forced: Boolean = false) {
-        repository.getFlights()
+        interactor.getFlights()
                 .doOnSubscribe { viewState.showProgressView(true) }
                 .doAfterTerminate { viewState.showProgressView(false) }
-                .subscribe { flights: List<FlightEntity>?, error: Throwable? ->
-                    viewState.showFlights(flights?.map { FlightMapper().transform(it) }
-                            ?: emptyList())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { flights: List<Flight>?, error: Throwable? ->
+                    viewState.showFlights(flights!!)
                 }
     }
 }

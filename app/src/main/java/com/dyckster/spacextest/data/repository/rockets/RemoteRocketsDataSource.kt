@@ -1,6 +1,6 @@
 package com.dyckster.spacextest.data.repository.rockets
 
-import com.dyckster.spacextest.model.rocket.RocketDetail
+import com.dyckster.spacextest.domain.model.rocket.RocketDetail
 import io.reactivex.Single
 
 object RemoteRocketsDataSource:RocketsDataSource {

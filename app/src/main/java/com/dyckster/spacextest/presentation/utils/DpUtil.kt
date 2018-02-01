@@ -1,4 +1,4 @@
-package com.dyckster.spacextest.presentation.ui.utils
+package com.dyckster.spacextest.presentation.utils
 
 import android.content.res.Resources
 

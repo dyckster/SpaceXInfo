@@ -1,9 +1,8 @@
 package com.dyckster.spacextest.data.network
 
 import com.dyckster.spacextest.data.entity.flight.FlightEntity
-import com.dyckster.spacextest.model.flight.Flight
-import com.dyckster.spacextest.model.info.CompanyInfo
-import com.dyckster.spacextest.model.rocket.RocketDetail
+import com.dyckster.spacextest.domain.model.info.CompanyInfo
+import com.dyckster.spacextest.domain.model.rocket.RocketDetail
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

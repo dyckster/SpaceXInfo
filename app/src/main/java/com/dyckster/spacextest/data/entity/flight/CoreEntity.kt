@@ -3,7 +3,7 @@ package com.dyckster.spacextest.data.entity.flight
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import com.dyckster.spacextest.model.flight.LandingType
+import com.dyckster.spacextest.domain.model.flight.LandingType
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "core")

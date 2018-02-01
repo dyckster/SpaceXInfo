@@ -3,7 +3,7 @@ package com.dyckster.spacextest.presentation.ui.main.adapter
 import android.view.View
 import android.view.ViewGroup
 import com.dyckster.spacextest.R
-import com.dyckster.spacextest.model.flight.Flight
+import com.dyckster.spacextest.domain.model.flight.Flight
 import kotlinx.android.synthetic.main.item_flight_past.view.*
 import java.text.SimpleDateFormat
 import java.util.*

@@ -2,8 +2,8 @@ package com.dyckster.spacextest.presentation.ui.global.viewholders
 
 import android.view.ViewGroup
 import com.dyckster.spacextest.R
-import com.dyckster.spacextest.presentation.ui.utils.DpUtil
-import com.dyckster.spacextest.presentation.ui.utils.GraphicUnit
+import com.dyckster.spacextest.presentation.utils.DpUtil
+import com.dyckster.spacextest.presentation.utils.GraphicUnit
 
 class EmptyViewHolder(parent: ViewGroup) : BaseViewHolder(R.layout.item_empty, parent) {
 

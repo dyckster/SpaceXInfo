@@ -1,6 +1,4 @@
-package com.dyckster.spacextest.model.flight
-
-import com.google.gson.annotations.SerializedName
+package com.dyckster.spacextest.domain.model.flight
 
 data class LaunchSite(
         val siteId: String,

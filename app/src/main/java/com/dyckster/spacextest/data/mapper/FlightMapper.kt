@@ -4,7 +4,7 @@ import com.dyckster.spacextest.data.entity.flight.FlightEntity
 import com.dyckster.spacextest.data.entity.flight.FlightLinksEntity
 import com.dyckster.spacextest.data.entity.flight.LaunchSiteEntity
 import com.dyckster.spacextest.data.entity.flight.RocketEntity
-import com.dyckster.spacextest.model.flight.*
+import com.dyckster.spacextest.domain.model.flight.*
 
 class FlightMapper : Mapper<FlightEntity, Flight> {
 

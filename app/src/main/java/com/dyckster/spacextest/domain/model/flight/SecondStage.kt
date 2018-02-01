@@ -1,3 +1,3 @@
-package com.dyckster.spacextest.model.flight
+package com.dyckster.spacextest.domain.model.flight
 
 data class SecondStage(val payloads: List<Payload>)

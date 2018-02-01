@@ -2,8 +2,7 @@ package com.dyckster.spacextest.presentation.ui.main.adapter
 
 import android.view.ViewGroup
 import com.dyckster.spacextest.R
-import com.dyckster.spacextest.model.flight.Flight
-import com.dyckster.spacextest.presentation.ui.utils.DpUtil
+import com.dyckster.spacextest.domain.model.flight.Flight
 import kotlinx.android.synthetic.main.item_flight_upcoming_compact.view.*
 import java.text.SimpleDateFormat
 import java.util.*

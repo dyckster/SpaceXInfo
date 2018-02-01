@@ -1,6 +1,6 @@
 package com.dyckster.spacextest.data.entity.info
 
-import com.dyckster.spacextest.model.info.Headquarters
+import com.dyckster.spacextest.domain.model.info.Headquarters
 
 data class CompanyInfoEntity(
         val name: String,

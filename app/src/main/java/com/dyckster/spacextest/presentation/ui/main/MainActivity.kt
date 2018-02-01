@@ -3,7 +3,6 @@ package com.dyckster.spacextest.presentation.ui.main
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -11,7 +10,8 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.dyckster.spacextest.R
 import com.dyckster.spacextest.data.repository.flights.FlightsRepository
-import com.dyckster.spacextest.model.flight.Flight
+import com.dyckster.spacextest.domain.interactors.FlightListInteractor
+import com.dyckster.spacextest.domain.model.flight.Flight
 import com.dyckster.spacextest.presentation.mvp.presenter.MainPresenter
 import com.dyckster.spacextest.presentation.mvp.view.MainView
 import com.dyckster.spacextest.presentation.ui.main.adapter.MainAdapter
@@ -23,7 +23,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     lateinit var presenter: MainPresenter
 
     @ProvidePresenter
-    fun providePresenter(): MainPresenter = MainPresenter(FlightsRepository)
+    fun providePresenter(): MainPresenter = MainPresenter(FlightListInteractor(FlightsRepository))
 
     private val adapter = MainAdapter()
 
@@ -39,8 +39,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        MenuInflater(this).inflate(R.menu.main_toolbar, menu)
-        return super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.main_toolbar, menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

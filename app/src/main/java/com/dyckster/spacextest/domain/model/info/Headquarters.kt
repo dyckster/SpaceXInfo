@@ -1,4 +1,4 @@
-package com.dyckster.spacextest.model.info
+package com.dyckster.spacextest.domain.model.info
 
 data class Headquarters(
         val address: String,

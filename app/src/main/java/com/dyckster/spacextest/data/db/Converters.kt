@@ -1,7 +1,7 @@
 package com.dyckster.spacextest.data.db
 
 import android.arch.persistence.room.TypeConverter
-import com.dyckster.spacextest.model.flight.LandingType
+import com.dyckster.spacextest.domain.model.flight.LandingType
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
