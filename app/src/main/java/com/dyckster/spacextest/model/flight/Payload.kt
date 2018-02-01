@@ -1,6 +1,6 @@
 package com.dyckster.spacextest.model.flight
 
-import com.dyckster.spacextest.model.flight.db.PayloadDb
+import com.dyckster.spacextest.data.entity.flight.PayloadDb
 import com.google.gson.annotations.SerializedName
 
 data class Payload(

@@ -1,4 +1,4 @@
-package com.dyckster.spacextest.model.flight.db
+package com.dyckster.spacextest.data.entity.flight
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -6,7 +6,6 @@ import android.arch.persistence.room.PrimaryKey
 import com.dyckster.spacextest.model.flight.Core
 import com.dyckster.spacextest.model.flight.LandingType
 
-//TODO Extend Core.kt?
 @Entity(tableName = "core")
 data class CoreDb(
         @PrimaryKey(autoGenerate = true)

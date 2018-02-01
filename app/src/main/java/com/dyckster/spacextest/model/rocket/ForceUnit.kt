@@ -1,6 +1,10 @@
 package com.dyckster.spacextest.model.rocket
 
+import com.google.gson.annotations.SerializedName
+
 data class ForceUnit(
-        val newTons: Float,
+        @SerializedName("kN")
+        val newtons: Float,
+        @SerializedName("lbf")
         val poundForce: Float
 )

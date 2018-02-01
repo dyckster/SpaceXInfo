@@ -1,6 +1,8 @@
 package com.dyckster.spacextest.data.network
 
 import com.dyckster.spacextest.model.flight.Flight
+import com.dyckster.spacextest.model.info.CompanyInfo
+import com.dyckster.spacextest.model.rocket.RocketDetail
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface SpaceXApiService {
     @GET("launches")
@@ -17,10 +20,13 @@ interface SpaceXApiService {
     fun getUpcomingFlights(): Single<List<Flight>>
 
     @GET("rockets")
-    fun getRockets()
+    fun getRockets(): Single<List<RocketDetail>>
+
+    @GET("rockets/{id}")
+    fun getRocket(@Path("id") rocketId: String): Single<RocketDetail>
 
     @GET("info")
-    fun getCompanyData()
+    fun getCompanyData(): Single<CompanyInfo>
 
     @GET("launchpads")
     fun getLaunchpads()

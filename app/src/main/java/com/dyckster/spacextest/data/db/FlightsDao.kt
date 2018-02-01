@@ -1,7 +1,7 @@
 package com.dyckster.spacextest.data.db
 
 import android.arch.persistence.room.*
-import com.dyckster.spacextest.model.flight.db.*
+import com.dyckster.spacextest.data.entity.flight.*
 import io.reactivex.Single
 
 @Dao

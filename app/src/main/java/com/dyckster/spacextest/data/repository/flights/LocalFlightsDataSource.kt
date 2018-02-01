@@ -4,10 +4,10 @@ import com.dyckster.spacextest.SpaceXApplication
 import com.dyckster.spacextest.model.flight.Core
 import com.dyckster.spacextest.model.flight.Flight
 import com.dyckster.spacextest.model.flight.Payload
-import com.dyckster.spacextest.model.flight.db.CoreDb
-import com.dyckster.spacextest.model.flight.db.FlightDb
-import com.dyckster.spacextest.model.flight.db.PayloadDb
-import com.dyckster.spacextest.model.flight.db.RocketDb
+import com.dyckster.spacextest.data.entity.flight.CoreDb
+import com.dyckster.spacextest.data.entity.flight.FlightDb
+import com.dyckster.spacextest.data.entity.flight.PayloadDb
+import com.dyckster.spacextest.data.entity.flight.RocketDb
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 

@@ -1,6 +1,6 @@
 package com.dyckster.spacextest.model.flight
 
-import com.dyckster.spacextest.model.flight.db.CoreDb
+import com.dyckster.spacextest.data.entity.flight.CoreDb
 import com.google.gson.annotations.SerializedName
 
 data class Core(

@@ -1,4 +1,4 @@
-package com.dyckster.spacextest.model.flight.db
+package com.dyckster.spacextest.data.entity.flight
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Embedded

@@ -1,6 +1,10 @@
 package com.dyckster.spacextest.model.rocket
 
+import com.google.gson.annotations.SerializedName
+
 data class LandingLegs(
+        @SerializedName("number")
         val numberOfLegs: Int,
-        val material: String
+        @SerializedName("material")
+        val material: String?
 )
