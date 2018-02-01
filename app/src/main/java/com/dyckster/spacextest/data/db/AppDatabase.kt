@@ -3,13 +3,13 @@ package com.dyckster.spacextest.data.db
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
-import com.dyckster.spacextest.data.entity.flight.CoreDb
-import com.dyckster.spacextest.data.entity.flight.FlightDb
-import com.dyckster.spacextest.data.entity.flight.PayloadDb
-import com.dyckster.spacextest.data.entity.flight.RocketDb
+import com.dyckster.spacextest.data.entity.flight.CoreEntity
+import com.dyckster.spacextest.data.entity.flight.FlightEntity
+import com.dyckster.spacextest.data.entity.flight.PayloadEntity
+import com.dyckster.spacextest.data.entity.flight.RocketEntity
 
 @Database(
-        entities = [FlightDb::class, CoreDb::class, PayloadDb::class, RocketDb::class],
+        entities = [FlightEntity::class, CoreEntity::class, PayloadEntity::class, RocketEntity::class],
         version = 1,
         exportSchema = false)
 @TypeConverters(

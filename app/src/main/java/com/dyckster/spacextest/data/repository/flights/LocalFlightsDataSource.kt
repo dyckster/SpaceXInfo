@@ -1,45 +1,39 @@
 package com.dyckster.spacextest.data.repository.flights
 
 import com.dyckster.spacextest.SpaceXApplication
-import com.dyckster.spacextest.model.flight.Core
-import com.dyckster.spacextest.model.flight.Flight
-import com.dyckster.spacextest.model.flight.Payload
-import com.dyckster.spacextest.data.entity.flight.CoreDb
-import com.dyckster.spacextest.data.entity.flight.FlightDb
-import com.dyckster.spacextest.data.entity.flight.PayloadDb
-import com.dyckster.spacextest.data.entity.flight.RocketDb
+import com.dyckster.spacextest.data.entity.flight.FirstStageEntity
+import com.dyckster.spacextest.data.entity.flight.FlightEntity
+import com.dyckster.spacextest.data.entity.flight.SecondStageEntity
+import com.dyckster.spacextest.data.exception.EmptyLocalDataException
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 
-object LocalFlightsDataSource : FlightsDataSource {
+internal object LocalFlightsDataSource : FlightsDataSource {
 
-    override fun getFlights(): Single<List<Flight>> {
+
+    override fun getFlights(): Single<List<FlightEntity>> {
         val flightsDao = SpaceXApplication.database.flightsDao()
         val flightsDb = flightsDao.getFlights()
         val rocketsDb = flightsDao.getRocketsWithStages()
         return Single.zip(flightsDb, rocketsDb, BiFunction { flights, rockets ->
-            return@BiFunction flights.map {
-                val flightNumber: Int = it.flightNumber
-                val rocketDbWithStages = rockets.find { flightNumber == it.rocketDb!!.flightNumber }!!
-                return@map Flight(it,
-                        rocketDbWithStages.rocketDb!!,
-                        rocketDbWithStages.cores.map { Core(it) },
-                        rocketDbWithStages.payloads.map { Payload(it) })
-            }.takeUnless { it.isEmpty() } ?: throw Exception()
+            return@BiFunction flights
+                    .onEach {
+                        val flightNumber: Int = it.flightNumber
+                        val rocketDbWithStages = rockets.find { flightNumber == it.rocketDb!!.flightNumber }!!
+                        it.rocketDb = rocketDbWithStages.rocketDb
+                        it.rocketDb!!.firstStageEntity = FirstStageEntity(rocketDbWithStages.cores)
+                        it.rocketDb!!.secondStageEntity = SecondStageEntity(rocketDbWithStages.payloads)
+                    }
+                    .takeUnless { it.isEmpty() } ?: throw EmptyLocalDataException()
         })
+
     }
 
-    override fun saveFlights(vararg flights: Flight) {
-        val flightsDb = flights.map { FlightDb(it) }
-        val rockets = flights.map { RocketDb(it) }
-        val cores = flights.flatMap {
-            val flightNumber = it.flightNumber
-            it.rocket.firstStage.cores.map { CoreDb(it, flightNumber) }
-        }
-        val payloads = flights.flatMap {
-            val flightNumber = it.flightNumber
-            it.rocket.secondStage.payloads.map { PayloadDb(it, flightNumber) }
-        }
-        SpaceXApplication.database.flightsDao().insertFlights(flightsDb, rockets, cores, payloads)
+    override fun saveFlights(flights: List<FlightEntity>) {
+        val rockets = flights.map { it.rocketDb!! }
+        val cores = flights.flatMap { it.rocketDb!!.firstStageEntity!!.cores }
+        val payloads = flights.flatMap { it.rocketDb!!.secondStageEntity!!.payloads }
+        SpaceXApplication.database.flightsDao()
+                .insertFlights(flights, rockets, cores, payloads)
     }
 }

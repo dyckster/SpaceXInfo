@@ -1,5 +1,6 @@
 package com.dyckster.spacextest.data.network
 
+import com.dyckster.spacextest.data.entity.flight.FlightEntity
 import com.dyckster.spacextest.model.flight.Flight
 import com.dyckster.spacextest.model.info.CompanyInfo
 import com.dyckster.spacextest.model.rocket.RocketDetail
@@ -14,10 +15,10 @@ import retrofit2.http.Path
 
 interface SpaceXApiService {
     @GET("launches")
-    fun getAllFlights(): Single<List<Flight>>
+    fun getAllFlights(): Single<List<FlightEntity>>
 
     @GET("launches/upcoming")
-    fun getUpcomingFlights(): Single<List<Flight>>
+    fun getUpcomingFlights(): Single<List<FlightEntity>>
 
     @GET("rockets")
     fun getRockets(): Single<List<RocketDetail>>

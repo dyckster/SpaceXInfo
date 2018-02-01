@@ -9,10 +9,10 @@ abstract class FlightsDao {
 
     @Insert
     @Transaction
-    open fun insertFlights(flights: List<FlightDb>,
-                           rockets: List<RocketDb>,
-                           cores: List<CoreDb>,
-                           payloads: List<PayloadDb>) {
+    open fun insertFlights(flights: List<FlightEntity>,
+                           rockets: List<RocketEntity>,
+                           cores: List<CoreEntity>,
+                           payloads: List<PayloadEntity>) {
         insertFlights(flights)
         insertRockets(rockets)
         insertCores(cores)
@@ -20,30 +20,30 @@ abstract class FlightsDao {
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertFlights(flights: List<FlightDb>)
+    abstract fun insertFlights(flights: List<FlightEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertRockets(rockets: List<RocketDb>)
+    abstract fun insertRockets(rockets: List<RocketEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertCores(cores: List<CoreDb>)
+    abstract fun insertCores(cores: List<CoreEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertPayloads(payloads: List<PayloadDb>)
+    abstract fun insertPayloads(payloads: List<PayloadEntity>)
 
     @Transaction
-    @Query("SELECT * FROM flight_rocket WHERE flight_number = :flightNumber")
-    abstract fun getRocketWithStages(flightNumber: Int): Single<RocketDbWithStages>
+    @Query("SELECT * FROM rocket_flight WHERE flight_number = :flightNumber")
+    abstract fun getRocketWithStages(flightNumber: Int): Single<RocketEntityWithStages>
 
     @Query("SELECT * FROM flight WHERE flight_number = :flightNumber")
-    abstract fun getFlight(flightNumber: Int): Single<FlightDb>
+    abstract fun getFlight(flightNumber: Int): Single<FlightEntity>
 
     @Query("SELECT * FROM flight")
-    abstract fun getFlights(): Single<List<FlightDb>>
+    abstract fun getFlights(): Single<List<FlightEntity>>
 
     @Transaction
-    @Query("SELECT * FROM flight_rocket")
-    abstract fun getRocketsWithStages(): Single<List<RocketDbWithStages>>
+    @Query("SELECT * FROM rocket_flight")
+    abstract fun getRocketsWithStages(): Single<List<RocketEntityWithStages>>
 
 
 }
