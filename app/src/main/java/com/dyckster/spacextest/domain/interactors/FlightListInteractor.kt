@@ -1,12 +1,13 @@
 package com.dyckster.spacextest.domain.interactors
 
 import com.dyckster.spacextest.data.mapper.FlightMapper
-import com.dyckster.spacextest.data.repository.flights.FlightsDataSource
+import com.dyckster.spacextest.domain.repository.FlightsRepository
 import com.dyckster.spacextest.domain.model.flight.Flight
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class FlightListInteractor(val repository: FlightsDataSource) {
+class FlightListInteractor @Inject constructor(private val repository: FlightsRepository) {
 
     fun getFlights(forced: Boolean = false): Single<List<Flight>> {
         return repository.getFlights()

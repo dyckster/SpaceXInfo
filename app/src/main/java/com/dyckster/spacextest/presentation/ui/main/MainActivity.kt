@@ -9,8 +9,9 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.dyckster.spacextest.R
-import com.dyckster.spacextest.data.repository.flights.FlightsRepository
-import com.dyckster.spacextest.domain.interactors.FlightListInteractor
+import com.dyckster.spacextest.SpaceXApplication
+import com.dyckster.spacextest.di.flights.DaggerFlightsPresenterComponent
+import com.dyckster.spacextest.di.flights.FlightsPresenterModule
 import com.dyckster.spacextest.domain.model.flight.Flight
 import com.dyckster.spacextest.presentation.mvp.presenter.MainPresenter
 import com.dyckster.spacextest.presentation.mvp.view.MainView
@@ -23,7 +24,12 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     lateinit var presenter: MainPresenter
 
     @ProvidePresenter
-    fun providePresenter(): MainPresenter = MainPresenter(FlightListInteractor(FlightsRepository))
+    fun providePresenter(): MainPresenter {
+        return DaggerFlightsPresenterComponent.builder()
+                .applicationComponent(SpaceXApplication.applicationComponent)
+                .build()
+                .getPresenter()
+    }
 
     private val adapter = MainAdapter()
 

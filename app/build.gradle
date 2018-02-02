@@ -26,6 +26,7 @@ def supportVersion = "26.1.0"
 def retrofitVersion = "2.3.0"
 def archVersion = "1.0.0"
 def moxyVersion = "1.5.3"
+def daggerVersion = "2.14.1"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -60,6 +61,14 @@ dependencies {
     //Architecture
     implementation "com.arello-mobile:moxy-app-compat:$moxyVersion"
     kapt "com.arello-mobile:moxy-compiler:$moxyVersion"
+
+    //DI
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 }
 
 kapt {

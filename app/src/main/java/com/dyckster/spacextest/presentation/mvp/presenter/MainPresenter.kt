@@ -6,9 +6,11 @@ import com.dyckster.spacextest.domain.interactors.FlightListInteractor
 import com.dyckster.spacextest.domain.model.flight.Flight
 import com.dyckster.spacextest.presentation.mvp.view.MainView
 import io.reactivex.android.schedulers.AndroidSchedulers
+import javax.inject.Inject
 
 @InjectViewState
-class MainPresenter(private val interactor: FlightListInteractor) : MvpPresenter<MainView>() {
+class MainPresenter @Inject constructor(private val interactor: FlightListInteractor) : MvpPresenter<MainView>() {
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         fetchFlights()
