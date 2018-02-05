@@ -25,4 +25,12 @@ class MainPresenter @Inject constructor(private val interactor: FlightListIntera
                     viewState.showFlights(flights!!)
                 }
     }
+
+    fun openAbout() {
+        viewState.openAbout()
+    }
+
+    fun openFlight(flight: Flight) {
+        viewState.openFlight(flight)
+    }
 }

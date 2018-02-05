@@ -10,5 +10,7 @@
     <color name="colorTextPrimary">#191c1f</color>
     <color name="colorTextSecondary">#4b5056</color>
 
+    <color name="spaceXLogoGrey">#9d9fa2</color>
+
     <color name="colorDivider">#EDEDED</color>
 </resources>

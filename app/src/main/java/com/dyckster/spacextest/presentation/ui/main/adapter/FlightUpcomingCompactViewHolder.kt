@@ -10,6 +10,7 @@ import java.util.*
 internal class FlightUpcomingCompactViewHolder(parent: ViewGroup) : AbstractFlightViewHolder(R.layout.item_flight_upcoming_compact, parent) {
 
     override fun setFlight(flight: Flight) {
+        super.setFlight(flight)
         itemView.itemUpcomingRocketCompact.text = flight.rocket.rocketName
         itemView.itemUpcomingTitleCompact.text = itemView.context.getString(R.string.flight_format_no_date, flight.flightNumber.toString())
         itemView.itemUpcomingStartCompact.text = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date(flight.launchDate * 1000L))

@@ -35,6 +35,10 @@ internal enum class ViewType {
         override fun hasStableId(): Boolean = false
 
         override fun viewHolder(parent: ViewGroup): BaseViewHolder = DividerViewHolder(parent)
+    },
+    ABOUT {
+        override fun hasStableId(): Boolean = true
+        override fun viewHolder(parent: ViewGroup): BaseViewHolder = AboutViewHolder(parent)
     };
 
     abstract fun viewHolder(parent: ViewGroup): BaseViewHolder

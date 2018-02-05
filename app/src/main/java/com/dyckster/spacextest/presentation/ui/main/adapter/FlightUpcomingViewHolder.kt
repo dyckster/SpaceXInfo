@@ -8,7 +8,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 internal class FlightUpcomingViewHolder(parent: ViewGroup) : AbstractFlightViewHolder(R.layout.item_flight_upcoming, parent) {
+
     override fun setFlight(flight: Flight) {
+        super.setFlight(flight)
         itemView.itemUpcomingRocket.text = flight.rocket.rocketName
         itemView.itemUpcomingTitle.text = itemView.context.getString(R.string.flight_format_no_date, flight.flightNumber.toString())
         itemView.itemUpcomingStart.text = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date(flight.launchDate * 1000L))

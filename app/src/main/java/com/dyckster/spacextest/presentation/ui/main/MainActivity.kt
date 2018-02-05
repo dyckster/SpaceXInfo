@@ -11,7 +11,6 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.dyckster.spacextest.R
 import com.dyckster.spacextest.SpaceXApplication
 import com.dyckster.spacextest.di.flights.DaggerFlightsPresenterComponent
-import com.dyckster.spacextest.di.flights.FlightsPresenterModule
 import com.dyckster.spacextest.domain.model.flight.Flight
 import com.dyckster.spacextest.presentation.mvp.presenter.MainPresenter
 import com.dyckster.spacextest.presentation.mvp.view.MainView
@@ -42,6 +41,11 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
         launchesSwipeRefresh.setOnRefreshListener { presenter.fetchFlights(true) }
         launchesFilterButton.setOnClickListener { Toast.makeText(this, "Not working yet", Toast.LENGTH_LONG).show() }
+
+        adapter.apply {
+            setOnAboutClickListener { presenter.openAbout() }
+            setOnFlightClickListener { presenter.openFlight(it) }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -67,4 +71,11 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         adapter.buildAdapter(flights)
     }
 
+    override fun openFlight(flight: Flight) {
+        TODO("not implemented")
+    }
+
+    override fun openAbout() {
+        TODO("not implemented")
+    }
 }

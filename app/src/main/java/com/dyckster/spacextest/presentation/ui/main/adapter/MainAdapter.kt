@@ -11,6 +11,8 @@ import com.dyckster.spacextest.presentation.utils.GraphicUnit
 class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items: MutableList<Item> = ArrayList()
+    private lateinit var aboutClickListener: () -> Unit
+    private lateinit var flightClickListener: (Flight) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
             ViewType.values()[viewType].viewHolder(parent)
@@ -30,6 +32,14 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         super.setHasStableIds(true)
     }
 
+    fun setOnAboutClickListener(listener: () -> Unit) {
+        aboutClickListener = listener
+    }
+
+    fun setOnFlightClickListener(listener: (Flight) -> Unit) {
+        flightClickListener = listener
+    }
+
     fun buildAdapter(flights: List<Flight>) {
         items.clear()
         flights
@@ -40,6 +50,7 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     else items.add(Item(ViewType.FLIGHT_UPCOMING_COMPACT, flight))
                 }
                 .apply { items.add(Item(ViewType.EMPTY, 8)) }
+                .apply { items.add(Item(ViewType.ABOUT)) }
                 .let { flights }
                 .asReversed()
                 .filter { it.launchDate <= System.currentTimeMillis() / 1000L }
@@ -56,9 +67,13 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         val obj = items[position].type
         when (holder) {
-            is AbstractFlightViewHolder -> holder.setFlight(obj as Flight)
+            is AbstractFlightViewHolder -> {
+                holder.setFlight(obj as Flight)
+                holder.setOnClickListener(flightClickListener)
+            }
             is EmptyViewHolder -> holder.setHeight(obj as Int, GraphicUnit.DP)
             is HeaderViewHolder -> holder.setHeader(obj as Int)
+            is AboutViewHolder -> holder.setOnClickListener(aboutClickListener)
         }
     }
 
